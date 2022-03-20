@@ -1,0 +1,29 @@
+Produit
+http://localhost:8000/produit/name/carotte/description/tubercule
+
+Commande 
+http://localhost:8100/commande/name/carotte/description/tubercule/quantite/100 - RestTemplate
+
+http://localhost:8100/commande-feign/name/carotte/description/tubercule/quantite/100 -Feign
+
+Eureka
+http://localhost:8761/eureka
+
+
+GATEWAY
+
+http://localhost:8765/PRODUIT/produit/name/carotte/description/tubercule
+http://localhost:8765/COMMANDE/commande/name/carotte/description/tubercule/quantite/100 -RestTemplate -Feign
+
++spring.cloud.gateway.discovery.locator.lowerCaseServiceId
+
+
+http://localhost:8765/produit/produit/name/carotte/description/tubercule
+http://localhost:8765/commande/commande/name/carotte/description/tubercule/quantite/100 -RestTemplate
+http://localhost:8765/commande/commande-feign/name/carotte/description/tubercule/quantite/100 -Feign
+
+GATEWAYLOCATORFILTER
+
+http://localhost:8765/produit/name/carotte/description/tubercule
+http://localhost:8765/commande/name/carotte/description/tubercule/quantite/100 -RestTemplate
+http://localhost:8765/commande-feign/name/carotte/description/tubercule/quantite/100 -Feign
