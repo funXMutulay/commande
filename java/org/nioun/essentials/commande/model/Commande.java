@@ -2,9 +2,11 @@ package org.nioun.essentials.commande.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class Commande {
@@ -14,6 +16,11 @@ public class Commande {
 private Long commandeId ;
 
 private Long produitId;
+
+
+@Lob
+@Column(columnDefinition = "MEDIUMBLOB")
+private String image;
 
 private String name ;
 
@@ -26,7 +33,7 @@ private BigDecimal price ;
 
 private BigDecimal prixTotal;
 
-private String env ;
+private String categorie ;
 
 
 public Commande() {
@@ -38,16 +45,17 @@ public Commande() {
 
 
 
-public Commande(Long produitId, String name, String description,BigDecimal quantite, BigDecimal price,  BigDecimal prixTotal,
-		String env) {
+public Commande(Long produitId,String image , String name,  String description,BigDecimal quantite, BigDecimal price,  BigDecimal prixTotal,
+		String categorie) {
 	super();
 	this.produitId = produitId;
+	this.image = image;
 	this.name = name;
-	this.description = description;
+	this.image = image;this.description = description;
 	this.price = price;
 	this.quantite = quantite;
 	this.prixTotal = prixTotal;
-	this.env = env;
+	this.categorie = categorie;
 }
 
 
@@ -70,6 +78,24 @@ public Long getCommandeId() {
 public void setCommandeId(Long commandeId) {
 	this.commandeId= commandeId;
 }
+
+
+public String getImage() {
+	return image;
+}
+
+
+
+
+
+
+public void setImage(String image) {
+	this.image = image;
+}
+
+
+
+
 
 
 public String getName() {
@@ -122,13 +148,13 @@ public void setPrixTotal(BigDecimal prixTotal) {
 }
 
 
-public String getEnv() {
-	return env;
+public String getCategorie() {
+	return categorie;
 }
 
 
-public void setEnv(String env) {
-	this.env = env;
+public void setCategorie(String categorie) {
+	this.categorie = categorie;
 }
 
 

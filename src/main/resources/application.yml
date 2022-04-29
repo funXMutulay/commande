@@ -1,0 +1,65 @@
+spring:
+   application:
+     name: commande
+   sleuth:
+      sampler:
+        probability: 1.0
+   cloud:
+     config:
+        import: optional:configserver:http://localhost:8888/
+        server:
+           git:
+              uri : file:///C:/Users/mmduk/eclipse-workspace/git-config-local-repo
+        enabled: false
+        import-check: 
+           enabled: false
+
+#datasource variables
+
+   datasource:
+      url: jdbc:h2:file:./commandedb;AUTO_SERVER=TRUE
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
+      initialization-mode: always
+
+#database variables
+   h2:
+      console:
+         enabled: true
+         settings:
+            web-allow-others: true
+
+#persistence 
+   jpa:
+      hibernate:
+         ddl-auto: update
+      database-platform: org.hibernate.dialect.H2Dialect
+      show-sql: true
+
+
+
+
+
+
+
+eureka:
+   client:
+      register-with-eureka: true
+      fetch-registry: true
+      service-uri:
+        defaultZone: http://localhost:8761/eureka/
+   instance:
+     hostname: localhost 
+          
+ 
+server:
+   port: 8100
+
+
+
+
+
+
+
+

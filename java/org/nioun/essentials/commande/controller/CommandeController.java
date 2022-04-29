@@ -21,6 +21,7 @@ public class CommandeController {
 	@Autowired
 	ProduitProxy proxy;
 	
+	@Autowired
 	CommandeService commandeService;
 	
 	@GetMapping("/commande/name/{name}/description/{description}/quantite/{quantite}")
@@ -32,7 +33,7 @@ public class CommandeController {
 		uriVariables.put("name", name);
 		uriVariables.put("description", description);
 		ResponseEntity<Commande> responseEntity = new RestTemplate()
-				.getForEntity("http://localhost:8080/produit/name/{name}/description/{description}",
+				.getForEntity("http://localhost:8000/produit/name/{name}/description/{description}",
 						Commande.class,
 						uriVariables);
 		
@@ -40,10 +41,11 @@ public class CommandeController {
 		
 		
 		return new Commande(commande.getProduitId(),
+				commande.getImage(),
 				name,description,quantite,
 				commande.getPrice(),
 				quantite.multiply(commande.getPrice()),
-				commande.getEnv());
+				commande.getCategorie());
 	
 	
 	} 
@@ -81,11 +83,11 @@ public class CommandeController {
 		
 	*/
 		return new Commande(
-				commande.getProduitId(),
+				commande.getProduitId(),commande.getImage(),
 				name,description,quantite,
 				commande.getPrice(),
 				quantite.multiply(commande.getPrice()),
-				commande.getEnv()
+				commande.getCategorie()
 				
 				);
 	} 
